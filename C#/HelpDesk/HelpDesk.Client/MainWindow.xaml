@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HelpDesk.Client"
         mc:Ignorable="d"
-        Title="Cлужба подержки" Height="450" Width="800">
+        Title="Cлужба подержки" Height="515.047" Width="797.867" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Label Content="Тема:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Вид заявки:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Телефон для связи:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxRequestCall" Content="Запросить звонок" HorizontalAlignment="Left" Margin="450,68,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxHeading" Height="23" Margin="89,14,9.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxTel" Height="23" Margin="130,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298"/>
+        <ComboBox Margin="89,39,9.6,0" VerticalAlignment="Top" />
+        <Label Content="Описание:" HorizontalAlignment="Left" Margin="7,88,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxTextRequest" Margin="7,112,10.6,202.6" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Text="" FontSize="14"/>
+        <Label Content="Вложение:" HorizontalAlignment="Left" Margin="10,0,0,171.6" VerticalAlignment="Bottom"/>
+        <Border BorderThickness="1" Margin="10,0,9.6,55.6" BorderBrush="Black" CornerRadius="3" Height="116" VerticalAlignment="Bottom">
+            <ListBox ItemsSource="{Binding Path=Files}" Grid.Row="1" SelectionMode="Extended" x:Name="dropBoxFile" AllowDrop="True" Drop="DropBox_Drop" DragOver="DropBox_DragOver" DragLeave="DropBox_DragLeave" FontSize="10" Margin="0.2,-0.8,-0.2,0.4" MouseDoubleClick="dropBoxFile_MouseDoubleClick">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Открыть файл" Click="ListBoxOpenFile"/>
+                        <MenuItem Header="Добавить файл" Click="ListBoxAddFile"/>
+                        <MenuItem Header="Добавить скриншот из буфера обмена" Click="ListBoxAddImageFromClipboard"/>
+                        <MenuItem Header="Исключить" Click="ListBoxDelFile"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+                <ListBox.Background>
+                    <!--Viewport="0.07,0.2,0.86,0.6"-->
+                    <VisualBrush AlignmentX="Center" Stretch="None" TileMode="Tile" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid >
+                                <TextBlock x:Name="backText" Background="White" Text="Перетащите изображение(я) сюда либо добавьте его с&#10;помощью контекстного меню (правая клавиша мыши)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Center" FontFamily="Microsoft Sans" FontSize="25" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </ListBox.Background>
+            </ListBox>
+        </Border>
+        <Button x:Name="buttonSend" Content="Отправить" Margin="0,0,10.6,9.6" HorizontalAlignment="Right" Width="168" Height="41" VerticalAlignment="Bottom" FontSize="16"/>
     </Grid>
 </Window>
