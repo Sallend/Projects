@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.NetworkInformation;
 
 namespace HelpDesk.Client
 {
@@ -152,7 +153,88 @@ namespace HelpDesk.Client
             }
         }
 
+        private void buttonSend_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (textBoxHeading.Text.Replace(" ", "").Length < 3)
+            {
+                MessageBox.Show("Введите тему заявки! (Более двух символов) \n *По теме вы сможете быстро найти заявку!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (textBoxTel.Text.Length <= 1)
+            {
+                MessageBox.Show("Проверьте введенный номер телефона!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!hostPing(_serverIP))
+            {
+                MessageBox.Show("Проверьте сетевое соединение.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            Dictionary<string, byte[]> fileByteList = new Dictionary<string, byte[]>();
+
+            string errFile = "";
+            int attachmentCount = 0;
+
+            foreach (String file in _files)
+            {
+                attachmentCount++;
+                if (System.IO.File.Exists(file))
+                {
+                    fileByteList.Add(System.IO.Path.GetFileNameWithoutExtension(file) + $"_{attachmentCount}" + System.IO.Path.GetExtension(file), System.IO.File.ReadAllBytes(file));
+                }
+                else
+                {
+                    errFile += "\n" + file;
+                }
+            }
+            if (errFile.Length > 0)
+            {
+                MessageBox.Show($"Не найден файл: " + errFile, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
+            DialogServer.sendRequest(_serverIP, "getObjNewCreate", getInfoErr(textBoxTopic.Text, textBoxTextEr.Text, comboBoxHelpdeskRequestType.Text, textBoxTabNomer.Text, textBoxTel.Text, fileByteList));
+            this.Close();
+            DisplaynotifyMessageSent(textBoxTopic.Text, attachmentCount);
+        }
+
+        public static bool hostPing(string host)
+        {
+            Ping ping = new Ping();
+            PingOptions options = new PingOptions { DontFragment = true };
+            //просто нужны некоторые данные. это отправляет 10 байтов.
+            byte[] buffer = Encoding.ASCII.GetBytes(new string('z', 10));
+            try
+            {
+                var reply = ping.Send(host, 60, buffer, options);
+                if (reply == null)
+                {
+                    return false;
+                }
+
+                if (reply.Status == IPStatus.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private ObservableCollection<string> _files = new ObservableCollection<string>();
+        private string _serverIP = "";
+
 
     }
 }
