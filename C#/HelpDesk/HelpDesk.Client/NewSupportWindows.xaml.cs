@@ -18,14 +18,12 @@ using System.Windows.Shapes;
 using System.Net.NetworkInformation;
 
 namespace HelpDesk.Client
-{
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
+{  
+    public partial class NewSupportWindows : Window
+    {        
+        public NewSupportWindows(string ipServer)
         {
+            this.ipServer = ipServer;
             InitializeComponent();
             _files.Clear();
         }
@@ -168,7 +166,7 @@ namespace HelpDesk.Client
                 return;
             }
 
-            if (!hostPing(_serverIP))
+            if (!hostPing(ipServer.Split(':')[0]))
             {
                 MessageBox.Show("Проверьте сетевое соединение.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -197,10 +195,23 @@ namespace HelpDesk.Client
                 return;
             }
 
-
-            DialogServer.sendRequest(_serverIP, "getObjNewCreate", getInfoErr(textBoxTopic.Text, textBoxTextEr.Text, comboBoxHelpdeskRequestType.Text, textBoxTabNomer.Text, textBoxTel.Text, fileByteList));
+            DialogServer.sendRequest(ipServer, "getObjNewCreate", getInfoErr(textBoxHeading.Text, textBoxTel.Text,  fileByteList));
             this.Close();
-            DisplaynotifyMessageSent(textBoxTopic.Text, attachmentCount);
+            
+        }
+
+        private List<object> getInfoErr(string headingErr,  string phone, Dictionary<string, byte[]> fileByteList)
+        {
+            List<object> objInfo = new List<object>();
+            objInfo.Add(2240); //Создоваемый обьект ID  0
+            Dictionary<string, string> attrListValue = new Dictionary<string, string>(); //list: attributeid, value
+            attrListValue.Add("headingErr", headingErr);
+            attrListValue.Add("phone", phone);//Служебный телефон
+           // attrListValue.Add("pcName", pcName);//PC           
+           // attrListValue.Add("user", user);//Имя входа пользователя OS
+            objInfo.Add(attrListValue); //1
+            objInfo.Add(fileByteList);//файлы 2     
+            return objInfo;
         }
 
         public static bool hostPing(string host)
@@ -233,8 +244,6 @@ namespace HelpDesk.Client
         }
 
         private ObservableCollection<string> _files = new ObservableCollection<string>();
-        private string _serverIP = "";
-
-
+        private string ipServer = string.Empty;
     }
 }
