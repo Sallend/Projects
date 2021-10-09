@@ -14,10 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace HelpDesk.Client
-{
-    /// <summary>
-    /// Логика взаимодействия для SettingsWindow.xaml
-    /// </summary>
+{    
     public partial class SettingsWindow : Window
     {
         public SettingsWindow()
@@ -31,6 +28,7 @@ namespace HelpDesk.Client
         {
             RegeditApp.SetAutorunValue("HelpDesk", (bool)checkBoxAutorun.IsChecked);
             RegeditApp.KeyValue("HelpDesk", "IPAddressServer", textBoxAddress.Text);
+            this.Close();
         }
     }
 }

@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HelpDesk.Client"
         mc:Ignorable="d"
-        Title="Настройки" Height="116.487" Width="411.556" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Настройки" Height="116.487" Width="609.156" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <CheckBox x:Name="checkBoxAutorun" Content="Автозапуск с Windows " HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonOk" Content="Применить" HorizontalAlignment="Left" Margin="314,54,0,0" VerticalAlignment="Top" Width="75" Click="buttonOk_Click"/>
-        <Label Content="Адрес сервера:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxAddress" HorizontalAlignment="Left" Height="23" Margin="109,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280"/>
+        <CheckBox x:Name="checkBoxAutorun" Content="Автозапуск с Windows " HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="buttonOk" Content="Применить" HorizontalAlignment="Left" Margin="510,50,0,0" VerticalAlignment="Top" Width="75" Click="buttonOk_Click"/>
+        <Label Content="Адрес сервера: (ipAdress:port)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxAddress" HorizontalAlignment="Left" Height="23" Margin="189,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="372"/>
 
     </Grid>
 </Window>
