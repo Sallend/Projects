@@ -195,20 +195,24 @@ namespace HelpDesk.Client
                 return;
             }
 
-            DialogServer.sendRequest(ipServer, "getObjNewCreate", getInfoErr(textBoxHeading.Text, textBoxTel.Text,  fileByteList));
+            DialogServer.sendRequest(ipServer, "getObjNewCreate", getInfoErr(textBoxHeading.Text, comdoBoxTypeAp.Text, textBoxTel.Text, (bool)checkBoxRequestCall.IsChecked, textBoxTextRequest.Text, fileByteList));
             this.Close();
             
         }
 
-        private List<object> getInfoErr(string headingErr,  string phone, Dictionary<string, byte[]> fileByteList)
+        private List<object> getInfoErr(string headingErr, string typeAp, string phone, bool requestCall, string textRequest, Dictionary<string, byte[]> fileByteList)
         {
             List<object> objInfo = new List<object>();
             objInfo.Add(2240); //Создоваемый обьект ID  0
             Dictionary<string, string> attrListValue = new Dictionary<string, string>(); //list: attributeid, value
             attrListValue.Add("headingErr", headingErr);
+            attrListValue.Add("typeAp", typeAp);
             attrListValue.Add("phone", phone);//Служебный телефон
-           // attrListValue.Add("pcName", pcName);//PC           
-           // attrListValue.Add("user", user);//Имя входа пользователя OS
+            attrListValue.Add("requestCall", requestCall ? "1" : "0");//Запросить звонок
+            attrListValue.Add("textRequest", textRequest);//Тext
+
+            // attrListValue.Add("pcName", pcName);//PC           
+            // attrListValue.Add("user", user);//Имя входа пользователя OS
             objInfo.Add(attrListValue); //1
             objInfo.Add(fileByteList);//файлы 2     
             return objInfo;

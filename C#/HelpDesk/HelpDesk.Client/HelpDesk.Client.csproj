@@ -68,6 +68,9 @@
     <Compile Include="MonitorServer.cs" />
     <Compile Include="Programs.cs" />
     <Compile Include="RegeditApp.cs" />
+    <Compile Include="RequestStatusWindows.xaml.cs">
+      <DependentUpon>RequestStatusWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -83,6 +86,10 @@
       <DependentUpon>NewSupportWindows.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RequestStatusWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

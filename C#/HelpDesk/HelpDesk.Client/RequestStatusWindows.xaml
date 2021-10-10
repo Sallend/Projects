@@ -1,0 +1,71 @@
+﻿<Window x:Class="HelpDesk.Client.RequestStatusWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HelpDesk.Client"
+        mc:Ignorable="d"
+        Title="Статус заявки" Height="450" Width="800" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="LableUser" Content="Пользователь: " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="369"/>
+        <Label x:Name="LabelPCName" Content="Имя компьютера: " HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Top" Width="241"/>
+        <DataGrid x:Name="dataGridErrStatus" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Margin="0,52,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="80" Binding="{Binding ID}" IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Тема" Width="445" Binding="{Binding Мssage}" IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Статус заявки" Width="200" Binding="{Binding ReqStatus}"  IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="5"/>
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="В ожидании обработки">
+                                    <Setter Property="Background" Value="#fffff0"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="Взято в работу">
+                                    <Setter Property="Background" Value="#98ff98"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="На стадии исправления">
+                                    <Setter Property="Background" Value="#9acd32"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="Отложено">
+                                    <Setter Property="Background" Value="Coral"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>                               
+                                <Trigger Property="Text" Value="Выполнено">
+                                    <Setter Property="Background" Value="#008000"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="Отклонено">
+                                    <Setter Property="Background" Value="Red"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>                               
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Подробная информация" Click="detailedInformation"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Label x:Name="labelStatus" Content="Подождите, идет поиск…" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Height="94" VerticalAlignment="Stretch" Width="549" FontWeight="Bold" FontSize="20"  Background="White"/>
+        <Label Content="Статусы заявок:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="127"/>
+    </Grid>
+</Window>
