@@ -13,7 +13,7 @@
         <CheckBox x:Name="checkBoxRequestCall" Content="Запросить звонок" HorizontalAlignment="Left" Margin="450,68,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxHeading" Height="23" Margin="89,14,9.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxTel" Height="23" Margin="130,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298"/>
-        <ComboBox Margin="89,39,9.6,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="comdoBoxTypeAp" Margin="89,39,9.6,0" VerticalAlignment="Top" />
         <Label Content="Описание:" HorizontalAlignment="Left" Margin="7,88,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxTextRequest" Margin="7,112,10.6,202.6" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Text="" FontSize="14"/>
         <Label Content="Вложение:" HorizontalAlignment="Left" Margin="10,0,0,171.6" VerticalAlignment="Bottom"/>
