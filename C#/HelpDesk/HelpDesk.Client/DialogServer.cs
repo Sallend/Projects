@@ -20,7 +20,7 @@ namespace HelpDesk.Client
 
             part2.Add(1, part3);
             part1.Add(part2);
-            request.Add(666666666666666, part1);
+            request.Add(2, part1); //2 = server helpDesk
 
             MonitorServer.sendDataToServer(request, ipServerPort); //IP и Port сервера
         }
