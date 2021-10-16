@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1c8c5ac6-07c7-495b-87ea-a5b40ce87e88": {
+      "ProjectGuid": "1c8c5ac6-07c7-495b-87ea-a5b40ce87e88",
+      "DisplayName": "HelpDesk.Server",
+      "ColorIndex": 0
+    },
+    "55154aa4-5411-42cb-b674-03a1a2763131": {
+      "ProjectGuid": "55154aa4-5411-42cb-b674-03a1a2763131",
+      "DisplayName": "HelpDesk.Client",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
