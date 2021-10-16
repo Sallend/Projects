@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F857EF12-4BB1-49C4-9CA8-878E7F23370C}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{1C8C5AC6-07C7-495B-87EA-A5B40CE87E88}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <RootNamespace>HelpDesk.Server</RootNamespace>
     <AssemblyName>HelpDesk.Server</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -40,16 +40,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServiceClass.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ServiceClass.Designer.cs">
-      <DependentUpon>ServiceClass.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

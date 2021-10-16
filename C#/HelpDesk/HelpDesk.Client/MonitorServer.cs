@@ -89,7 +89,7 @@ namespace HelpDesk.Client
             enabled = false;
         }
                 
-        public static void sendDataToServer(object myObj, IPAddress ServerIP, int Port)
+        public static void sendDataToServer(object myObj, string[] ipServerPort)
         {
             int bufferSize = 1024;
             byte[] buffer = null;
@@ -103,8 +103,8 @@ namespace HelpDesk.Client
             fs.Position = 0;
 
             int bufferCount = Convert.ToInt32(Math.Ceiling((double)fs.Length / (double)bufferSize));
-
-            TcpClient tcpClient = new TcpClient(ServerIP.ToString(), Port);
+            
+            TcpClient tcpClient = new TcpClient(ipServerPort[0], Convert.ToInt32(ipServerPort[1]));
             tcpClient.SendTimeout = 600000;
             tcpClient.ReceiveTimeout = 600000;
 
