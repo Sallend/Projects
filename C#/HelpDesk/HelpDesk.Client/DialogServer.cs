@@ -22,7 +22,7 @@ namespace HelpDesk.Client
             part1.Add(part2);
             request.Add(666666666666666, part1);
 
-            MonitorServer.sendDataToServer(request, System.Net.IPAddress.Parse(ipServerPort[0]), Convert.ToInt32(ipServerPort[1])); //IP и Port сервера
+            MonitorServer.sendDataToServer(request, ipServerPort); //IP и Port сервера
         }
     }
 }

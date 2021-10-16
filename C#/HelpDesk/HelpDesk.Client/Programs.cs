@@ -118,27 +118,27 @@ namespace HelpDesk.Client
 
         private static void onClickMonitorForms(object s, EventArgs e)
         {
-            //bool createdNew = true;
-            //using (Mutex mutex = new Mutex(true, "HelpDeskStatus", out createdNew))
-            //{
-            //    if (createdNew)
-            //    {
-            //        System.Windows.Forms.Application.EnableVisualStyles();
-            //        new **(serverIP).ShowDialog();// добав форму статуса заявок 
-            //    }
-            //    else
-            //    {
-            //        Process current = Process.GetCurrentProcess();
-            //        foreach (Process process in Process.GetProcessesByName(current.ProcessName))
-            //        {
-            //            if (process.Id != current.Id)
-            //            {
-            //                SetForegroundWindow(process.MainWindowHandle);
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
+            bool createdNew = true;
+            using (Mutex mutex = new Mutex(true, "HelpDeskStatus", out createdNew))
+            {
+                if (createdNew)
+                {
+                    System.Windows.Forms.Application.EnableVisualStyles();
+                    new RequestStatusWindows(serverIP).ShowDialog();// добав форму статуса заявок 
+                }
+                else
+                {
+                    Process current = Process.GetCurrentProcess();
+                    foreach (Process process in Process.GetProcessesByName(current.ProcessName))
+                    {
+                        if (process.Id != current.Id)
+                        {
+                            SetForegroundWindow(process.MainWindowHandle);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private static void clickWindowScissors(object s, EventArgs e)
