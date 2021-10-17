@@ -52,7 +52,7 @@ namespace HelpDesk.Client
 
                 notifyIcon.MouseDoubleClick += NotifyIcon_MouseDoubleClick;
 
-                ClientEvent.OnMessageServer += ServerEvent_OnMessageServer;
+                ClientEvent.OnMessageServer += ClientEvent_OnMessageServer;
 
                 Application.Run();
                 notifyIcon.Visible = false;
@@ -70,7 +70,7 @@ namespace HelpDesk.Client
             }
         }
 
-        private static void ServerEvent_OnMessageServer(object serverResponse)
+        private static void ClientEvent_OnMessageServer(object serverResponse)
         {
             List<string> lictAlerts = serverResponse as List<string>;
 

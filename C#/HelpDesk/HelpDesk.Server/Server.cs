@@ -16,8 +16,9 @@ namespace HelpDesk.Server
         public Server(int port = 0)
         {
             if (port != 0) this.port = port;
-            file = new StreamWriter(new FileStream(@"c:\helpDeskServer.log", System.IO.FileMode.Append));
+            file = new StreamWriter(new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\helpDeskServer.log", System.IO.FileMode.Append));
             file.WriteLine("HelpDeskServer стартовал " + DateTime.Now.ToString());
+            ServerEvent.SendMessageConsole("HelpDeskServer стартовал " + DateTime.Now.ToString());
             file.Flush();
 
             ThreadStart start = new ThreadStart(startserver);
@@ -79,16 +80,23 @@ namespace HelpDesk.Server
                     }
 
                     file.WriteLine("Данные успешно приняты " + DateTime.Now.ToString());
+                    ServerEvent.SendMessageConsole("Данные успешно приняты " + DateTime.Now.ToString());
                     file.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                    ServerEvent.SendMessageConsole("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
                     file.Flush();
                     fs.Close();
                 }
                 catch (Exception ex)
                 {
                     file.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    ServerEvent.SendMessageConsole("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     file.WriteLine("Данные не приняты " + DateTime.Now.ToString());
+                    ServerEvent.SendMessageConsole("Данные не приняты " + DateTime.Now.ToString());
                     file.WriteLine(ex.ToString());
+                    ServerEvent.SendMessageConsole(ex.ToString());
                     file.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    ServerEvent.SendMessageConsole("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     file.Flush();
                 }
 

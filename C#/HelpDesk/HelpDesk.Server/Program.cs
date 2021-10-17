@@ -10,7 +10,21 @@ namespace HelpDesk.Server
     {
         static void Main(string[] args)
         {
-            Server server = new Server();
+            ServerEvent.OnMessageConsiole += ServerEvent_MessageConsole;
+            Console.WriteLine("Для остановки сервера закройте консоль или введите команду “exit”.\n");
+            server = new Server();
+            while(!exit)
+            {
+              if (Console.ReadLine() == "exit")  exit = true;
+            }
         }
+
+        private static void ServerEvent_MessageConsole(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        private static Server server;
+        private static bool exit = false;
     }
 }
