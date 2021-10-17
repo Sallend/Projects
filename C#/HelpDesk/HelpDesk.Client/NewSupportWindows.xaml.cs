@@ -26,6 +26,9 @@ namespace HelpDesk.Client
             this.ipServer = ipServer;
             InitializeComponent();
             _files.Clear();
+            this.DataContext = this;
+            lableUserOS.Content += user;
+            labelPCName.Content += pcName;
         }
 
         private void DropBox_Drop(object sender, DragEventArgs e)
@@ -246,8 +249,17 @@ namespace HelpDesk.Client
                 return false;
             }
         }
+        public ObservableCollection<string> Files
+        {
+            get
+            {
+                return _files;
+            }
+        }
 
         private ObservableCollection<string> _files = new ObservableCollection<string>();
         private string ipServer = string.Empty;
+        private string user = System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToUpper();
+        private string pcName = System.Net.Dns.GetHostName().ToUpper();
     }
 }

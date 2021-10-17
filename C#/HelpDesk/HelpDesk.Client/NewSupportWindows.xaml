@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HelpDesk.Client"
         mc:Ignorable="d"
-        Title="Cлужба подержки" Height="515.047" Width="797.867" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen">
+        Title="Cлужба подержки" Height="601.447" Width="797.867" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Тема:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Вид заявки:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-        <Label Content="Телефон для связи:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBoxRequestCall" Content="Запросить звонок" HorizontalAlignment="Left" Margin="450,68,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxHeading" Height="23" Margin="89,14,9.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxTel" Height="23" Margin="130,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298"/>
-        <ComboBox x:Name="comdoBoxTypeAp" Margin="89,39,9.6,0" VerticalAlignment="Top" />
-        <Label Content="Описание:" HorizontalAlignment="Left" Margin="7,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxTextRequest" Margin="7,112,10.6,202.6" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Text="" FontSize="14"/>
+        <Label x:Name="lableUserOS" Content="Пользователь OS: " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="369" FontSize="14"/>
+        <Label x:Name="labelPCName" Content="Имя компьютера: " HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Top" Width="390" FontSize="14"/>
+        <Label Content="Тема:" HorizontalAlignment="Left" Margin="11,37,0,0" VerticalAlignment="Top"/>
+        <Label Content="Вид заявки:" HorizontalAlignment="Left" Margin="11,63,0,0" VerticalAlignment="Top"/>
+        <Label Content="Телефон для связи:" HorizontalAlignment="Left" Margin="11,89,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxRequestCall" Content="Запросить звонок" HorizontalAlignment="Left" Margin="451,95,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxHeading" Height="23" Margin="89,42,9.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxTel" Height="23" Margin="130,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298"/>
+        <ComboBox x:Name="comdoBoxTypeAp" Margin="90,66,8.6,0" VerticalAlignment="Top" />
+        <Label Content="Описание:" HorizontalAlignment="Left" Margin="8,115,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxTextRequest" Margin="7,146,10.6,203" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Text="" FontSize="14"/>
         <Label Content="Вложение:" HorizontalAlignment="Left" Margin="10,0,0,171.6" VerticalAlignment="Bottom"/>
         <Border BorderThickness="1" Margin="10,0,9.6,55.6" BorderBrush="Black" CornerRadius="3" Height="116" VerticalAlignment="Bottom">
             <ListBox ItemsSource="{Binding Path=Files}" Grid.Row="1" SelectionMode="Extended" x:Name="dropBoxFile" AllowDrop="True" Drop="DropBox_Drop" DragOver="DropBox_DragOver" DragLeave="DropBox_DragLeave" FontSize="10" Margin="0.2,-0.8,-0.2,0.4" MouseDoubleClick="dropBoxFile_MouseDoubleClick">
